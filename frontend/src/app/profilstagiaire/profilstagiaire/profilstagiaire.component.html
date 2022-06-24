@@ -1,0 +1,28 @@
+
+<div class="container">
+    <div class="row mt-3">
+        <article class="col-sm-6 alert alert-primary ">
+            <h3 class="font-weight-bold text-uppercase text-center"> Infomation profil</h3>
+            <p style="white-space: pre-line;"><b>Nom :</b> {{stagiaire?.nom}}</p>
+            <p style="white-space: pre-line;"><b>Prenom :</b> {{stagiaire?.prenom}}</p>
+            <p style="white-space: pre-line;"><b>Statut :</b> {{stagiaire?.statut}}</p>
+            <p style="white-space: pre-line;"><b>Email :</b> {{stagiaire?.mail}}€ ttc </p>
+            <p class="card-text"><b> Adresse :</b> {{stagiaire?.adresse}}</p>
+            <p class="card-text"><b>Code postal :</b> {{stagiaire?.codePostal}}</p>
+            <p class="card-text"><b>Ville :</b> {{stagiaire?.ville}}</p>
+            <a class="btn btn-outline-primary m-2" routerLink="/">Retour</a>
+            <a  (click)="onUpdateStagiaire(stagiaire)" class="btn btn-outline-success" >Modifier mes informations </a>
+        </article>
+        <article class="col-sm-6 alert alert-primary ">
+            <h3 class="font-weight-bold text-uppercase text-center"> Votre session</h3>
+           <div *ngFor="let session of sessions">
+            <p class="card-text"><b> Type de Formation :</b> {{session?.typeFormation}}</p>
+                <p class="card-text"><b>Date de début :</b> {{session?.dateDebut |date:'dd-MM-yyy'}}</p>
+                <p class="card-text"><b>Date de fin :</b> {{session?.dateFin |date:'dd-MM-yyy'}}</p>
+                <p class="card-text"><b> Salle de formation :</b> {{session?.salleFormation.nom}}</p>
+                <p class="card-text"><b> Etage :</b> {{session?.salleFormation.etage}}</p>
+                <a  (click)="redirectEvalSession()" class="btn btn-outline-success" >Evaluer ma session </a>
+           </div>
+        </article>
+    </div>
+</div>

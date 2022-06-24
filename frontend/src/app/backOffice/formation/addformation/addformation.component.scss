@@ -1,0 +1,16 @@
+.erreur {
+    border: 1px solid red !important;
+}
+form{
+    margin-top: 5px;
+    background-color: rgba(112, 107, 107, 0.149);
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 576px) {
+    h2 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,36 @@
+.nav-item .nav-link {
+    color: black;
+    text-shadow: none;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.nav-item {
+    border-bottom: 2px solid rgba(242, 244, 245, 0.116);
+}
+
+.nav-item:hover {
+    border-bottom: 2px solid rgb(0, 119, 255);
+    font-weight: bold;
+}
+
+@media screen and (max-width: 474px) {
+    h2 {
+        font-size: 15px;
+    }
+    li {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    h2 {
+        font-size: 12px;
+    }
+    li {
+        font-size: 8px;
+    }
+}

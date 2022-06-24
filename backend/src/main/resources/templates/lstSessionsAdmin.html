@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/style.css}" />
+<link rel="stylesheet" th:href="@{/style-menu-gestion.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<title>Gestion des Sessions</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-5">
+				<img src="/images/it-training-logo.png" class="w-25 m-3 img-thumbnail"
+					alt="photo profil">
+			</div>
+			   <div class="col-7">
+				 <h1 class=" mt-5">Ecole de formation</h1>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a>
+							<a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/admin/formation/liste}">Admin</a>
+					</div>
+				</div>
+				<button class="btn btn-danger me-2" type="button">Deconnexion</button>
+			</div>
+		</nav>
+	</header>
+	<div class="container p-0">
+		<div class="row m-2">
+			<div class="col-4 p-0">
+				<div class="card ">
+					<h2 class="card-header">Gestion</h2>
+					<nav>
+						<ul class="nav flex-column mb-2">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
+									des Formations</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/liste-des-sessions}">Gestion des Sessions</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
+									des Stagiaires</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formateur/liste}">Gestion
+									des Formateurs</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/mes-taches}">Mes tâches</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/note-experience-formateur}">Notes &
+									Expériences Formateur</a></li>
+						</ul>
+					</nav>
+			</div>
+			<a th:href="@{http://localhost:4200/admin}"
+							class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
+		</div>
+		<div class="col-8">
+				<h1>Gestion des Sessions</h1>
+				<div>
+					<a th:href="@{http://localhost:4200/admin}"
+						class="btn btn-primary m-2">Retour</a>
+				</div>
+				<div class="table-responsive">
+					<table
+						class="table table-info table-striped table-bordered table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center">Nom de la formation</th>
+								<th class="text-center">ID Session</th>
+								<th class="text-center">Date de début</th>
+								<th>Date de fin</th>
+								<th>Type de formation</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${sessions.empty}">
+								<td colspan="2">Aucune session inscrite</td>
+							</tr>
+							<tr th:each="sessionStagiaire : ${sessions}">
+								<td><span th:text="${sessionStagiaire.nomFormation}">Nom
+										formation</span></td>
+								<td><span th:text="${sessionStagiaire.idSession}">ID
+										Session</span></td>
+								<td><span th:text="${sessionStagiaire.dateDebut}">Date
+										de début</span></td>
+								<td><span th:text="${sessionStagiaire.dateFin}">Date
+										de fin</span></td>
+								<td><span th:text="${sessionStagiaire.typeFormation}">Type
+										de formation</span></td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+			</div>
+	<footer>
+		<div>
+			<p>Copyright © 2022</p>
+		</div>
+	</footer>
+</body>
+</html>

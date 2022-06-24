@@ -1,0 +1,24 @@
+
+<div class="containet">
+    <div class="row">
+        <div class="col">
+           
+          </div>
+        <div class="col-sm-8">
+            <h3 class="text-center mt-3 font-weight-bold text-uppercase">Sessions</h3>
+            <article class=" alert alert-primary mt-4 ">
+                <h3 class="font-weight-bold text-uppercase">S'inscrire à cette session</h3>
+                <p class="font-weight-bold text-uppercase"> {{formation?.nomFormation}}</p>
+                <p class="card-text"><b>Date de début :</b> {{session?.dateDebut | date:'dd-MM-yyy'}}</p>
+                <p class="card-text"><b>Date de fin :</b> {{session?.dateFin |date:'dd-MM-yyy'}}</p>
+                    <p class="card-text"><b>Type de formation :</b>
+                        {{session?.typeFormation}}</p>
+                <a class="btn btn-outline-primary m-2" routerLink="/">Retour</a>
+                <a href="" (click)="addStagiaireToSession()" class="btn btn-outline-success" routerLink="">Confirmer </a>
+            </article>
+        </div>
+        <div class="col">
+          
+          </div>
+    </div>
+</div>

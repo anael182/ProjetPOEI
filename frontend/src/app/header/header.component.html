@@ -1,0 +1,35 @@
+<header>
+    <div class="row">
+        <div class="col-5">
+            <img src="/assets/logo.png" class="w-25 m-4 img-thumbnail" alt="photo profil">
+        </div>
+        <div class="col-7">
+            <h1 class=" mt-5">Ecole de formation</h1>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" routerLink="/page-accueil" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link active" routerLink="/catalogue"  href="#">Formations</a>
+                    <a class="nav-link active" routerLink="/contact" href="#">Contact</a>
+                    <div [ngSwitch]="stagiaire.statut">
+                        <a *ngSwitchCase="'Stagiaire'" (click)="profilStagiaire(stagiaire.idUtilisateur)" class="nav-link active" routerLink="/admin" href="#">Compte</a>
+                        <a  *ngSwitchCase="'admin'" class="nav-link active" routerLink="/admin" href="#">Admin</a>
+                    </div>
+                </div>
+                <form class="container-fluid d-flex justify-content-end">
+                    <button [hidden]="this.isConnected" (click)="connexion()" class="btn btn-primary me-2" type="button">Connexion</button>
+                    <button *ngIf="this.isConnected == true" (click)="deconnexion()" class="btn btn-danger me-2" type="button">Deconnexion</button>
+                </form>
+            </div>
+
+        </div>
+    </nav>
+</header>

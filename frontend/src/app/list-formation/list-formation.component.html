@@ -1,0 +1,18 @@
+<div class="container">
+    <div *ngIf="!error" class="m-3">
+        <div class="card bg-light" style="width: 18rem;">
+            <img class=" p-3 card-img-top" src="assets/formation.png" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title text-uppercase ">{{ formation?.nomDomaine}}</h4>
+                <p class="card-text "><b>Formation :</b> {{formation?.nomFormation}}</p>
+                <p class="card-text"><b>informations :</b> {{formation?.description}}</p>
+                <p class="card-text"><b>Prix :</b> {{formation?.prix}}€ ttc </p>
+                <a  class="btn btn-primary m-2" routerLink="/formation/{{formation?.idFormation}}">Plus de
+                    détails</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="error" class="error">
+        Une erreur est survenue durant le chargement. Veuillez réessayer.
+    </div>
+</div>

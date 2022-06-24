@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/style.css}" />
+<link rel="stylesheet" th:href="@{/style-menu-gestion.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<title>Evaluation de Session</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-4">
+					<img src="/images/it-training-logo.png" class="w-25 m-3 img-thumbnail"
+					alt="photo profil">
+			</div>
+			<div class="col-8">
+				<h1 class=" mt-5">Ecole de formation</h1>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="col-8 container">
+		<div  class="row mt-3" >
+
+			<div class="col-8">
+				<h1>Evaluation de Session</h1>
+				<div class="table-responsive">
+					<div th:object="${evaluation}">
+						<label for="name">Numéro de Session : </label> <span
+							th:text="${evaluation.idSession}">ID Session</span>
+					</div>
+<!-- 					<div> -->
+<!-- 						<label for="name">Nom Stagiaire :</label> <span -->
+<!-- 							th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom -->
+<!-- 							Stagiaire :</span> -->
+<!-- 					</div> -->
+
+					<form class="alert alert-primary"
+						th:action="@{/evaluation-formation/valid/{id}(id=${evaluation.idSession})}"
+						th:object="${evaluation}" method="post">
+
+						<h2>Evaluation de l'accueil et de l'environnement</h2>
+						<div>
+							<label for="name">Qualité de l'accueil: </label> <input
+								class="form-check-input" type="hidden" id="idSession"
+								th:field="*{idSession}" name="idSession" value="*{idSession}" />
+								
+								<input class="form-check-input" type="hidden" id="nomFormateur"
+								th:field="*{nomFormateur}" name="nomFormateur" value="*{nomFormateur}" />
+								
+									<input class="form-check-input" type="hidden" id="prenomFormateur"
+								th:field="*{prenomFormateur}" name="prenomFormateur" value="*{prenomFormateur}" />
+
+							<input class="form-check-input" type="hidden" id="nom"
+								th:field="*{nom}" name="nom" value="*{nom}" /> <input
+								class="form-check-input" type="hidden" id="prenom"
+								th:field="*{prenom}" name="prenom" value="*{prenom}" />
+								
+															<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="accueil-note-1"
+									th:field="*{noteAccueil}" name="accueil" value="1" /> <label
+									class="form-check-label" for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="accueil-note-2"
+									th:field="*{noteAccueil}" name="accueil" value="2" /> <label
+									class="form-check-label" for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="accueil-note-3"
+									th:field="*{noteAccueil}" name="accueil" value="3" /> <label
+									class="form-check-label" for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="accueil-note-4"
+									th:field="*{noteAccueil}" name="accueil" value="4" /> <label
+									class="form-check-label" for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="accueil-note-5"
+									th:field="*{noteAccueil}" name="accueil" value="5" /> <label
+									class="form-check-label" for="5">5</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Qualité de l'environnement: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="environnement-note-1" th:field="*{noteEnvironnement}"
+									name="environnement" value="1" checked /> <label
+									class="form-check-label" for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="environnement-note-2" th:field="*{noteEnvironnement}"
+									name="environnement" value="2" /> <label
+									class="form-check-label" for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="environnement-note-3" th:field="*{noteEnvironnement}"
+									name="environnement" value="3" /> <label
+									class="form-check-label" for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="environnement-note-4" th:field="*{noteEnvironnement}"
+									name="environnement" value="4" /> <label
+									class="form-check-label" for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="environnement-note-5" th:field="*{noteEnvironnement}"
+									name="environnement" value="5" /> <label
+									class="form-check-label" for="5">5</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Contenu de la formation: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="contenu-note-1"
+									th:field="*{noteContenuFormation}" name="contenu" value="1"
+									checked /> <label class="form-check-label" for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="contenu-note-2"
+									th:field="*{noteContenuFormation}" name="contenu" value="2" />
+								<label class="form-check-label" for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="contenu-note-3"
+									th:field="*{noteContenuFormation}" name="contenu" value="3" />
+								<label class="form-check-label" for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" id="contenu-note-4"
+									th:field="*{noteContenuFormation}" name="contenu" value="4" />
+								<label class="form-check-label" for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="contenu-note-5"
+									th:field="*{noteContenuFormation}" name="contenu" value="5" />
+								<label class="form-check-label" for="5">5</label>
+							</div>
+						</div>
+
+						<h2>Evaluation du Formateur</h2>
+						<div>
+							<label for="name">Pédagogie: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="pedagogie-note-1" th:field="*{notePedagogie}"
+									name="pedagogie" value="1" /> <label class="form-check-label"
+									for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="pedagogie-note-2" th:field="*{notePedagogie}"
+									name="pedagogie" value="2" /> <label class="form-check-label"
+									for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="pedagogie-note-3" th:field="*{notePedagogie}"
+									name="pedagogie" value="3" /> <label class="form-check-label"
+									for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="pedagogie-note-4" th:field="*{notePedagogie}"
+									name="pedagogie" value="4" /> <label class="form-check-label"
+									for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="pedagogie-note-5" th:field="*{notePedagogie}"
+									name="pedagogie" value="5" /> <label class="form-check-label"
+									for="5">5</label>
+							</div>
+						</div>
+
+						<div>
+							<label for="name">Maîtrise du domaine:</label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="maitrise-note-1" th:field="*{noteMaitriseDomaine}"
+									name="maitrise" value="1" /> <label class="form-check-label"
+									for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="maitrise-note-2" th:field="*{noteMaitriseDomaine}"
+									name="maitrise" value="2" /> <label class="form-check-label"
+									for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="maitrise-note-3" th:field="*{noteMaitriseDomaine}"
+									name="maitrise" value="3" /> <label class="form-check-label"
+									for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="maitrise-note-4" th:field="*{noteMaitriseDomaine}"
+									name="maitrise" value="4" /> <label class="form-check-label"
+									for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="maitrise-note-5" th:field="*{noteMaitriseDomaine}"
+									name="maitrise" value="5" /> <label class="form-check-label"
+									for="5">5</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Disponibilité:</label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="disponibilite-note-1" th:field="*{noteDisponibilite}"
+									name="disponibilite" value="1" /> <label
+									class="form-check-label" for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="disponibilite-note-2" th:field="*{noteDisponibilite}"
+									name="disponibilite" value="2" /> <label
+									class="form-check-label" for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="disponibilite-note-3" th:field="*{noteDisponibilite}"
+									name="disponibilite" value="3" /> <label
+									class="form-check-label" for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="disponibilite-note-4" th:field="*{noteDisponibilite}"
+									name="disponibilite" value="4" /> <label
+									class="form-check-label" for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="disponibilite-note-5" th:field="*{noteDisponibilite}"
+									name="disponibilite" value="5" /> <label
+									class="form-check-label" for="5">5</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Réponses aux questions:</label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="question-reponse-note-1"
+									th:field="*{noteReponsesQuestions}" name="question-reponse"
+									value="1" /> <label class="form-check-label" for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="question-reponse-note-2"
+									th:field="*{noteReponsesQuestions}" name="question-reponse"
+									value="2" /> <label class="form-check-label" for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="question-reponse-note-3"
+									th:field="*{noteReponsesQuestions}" name="question-reponse"
+									value="3" /> <label class="form-check-label" for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="question-reponse-note-4"
+									th:field="*{noteReponsesQuestions}" name="question-reponse"
+									value="4" /> <label class="form-check-label" for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="question-reponse-note-5"
+									th:field="*{noteReponsesQuestions}" name="question-reponse"
+									value="5" /> <label class="form-check-label" for="5">5</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Technique d’animations:</label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="animation-note-1" th:field="*{noteTechniqueAnimation}"
+									name="animation" value="1" /> <label class="form-check-label"
+									for="1">1</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="animation-note-2" th:field="*{noteTechniqueAnimation}"
+									name="animation" value="2" /> <label class="form-check-label"
+									for="2">2</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="animation-note-3" th:field="*{noteTechniqueAnimation}"
+									name="animation" value="3" /> <label class="form-check-label"
+									for="3">3</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="animation-note-4" th:field="*{noteTechniqueAnimation}"
+									name="animation" value="4" /> <label class="form-check-label"
+									for="4">4</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="animation-note-5" th:field="*{noteTechniqueAnimation}"
+									name="animation" value="5" /> <label class="form-check-label"
+									for="5">5</label>
+							</div>
+						</div>
+						<h2>Evaluation de la session et autres projets</h2>
+						<div>
+							<label for="name">Niveau de satisfaction: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="insatisfait"
+									th:field="*{niveauSatisfaction}" name="satisfaction"
+									value="insatisfait" /> <label class="form-check-label" for="1">Insatisfait</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="plutot-insatisfait" th:field="*{niveauSatisfaction}"
+									name="satisfaction" value="plutôt insatisfait" /> <label
+									class="form-check-label" for="2">Plutôt insatisfait</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="plutot-satisfait" th:field="*{niveauSatisfaction}"
+									name="satisfaction" value="plutôt satisfait" /> <label
+									class="form-check-label" for="3">Plutôt satisfait</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="tres-satisfait"
+									th:field="*{niveauSatisfaction}" name="satisfaction"
+									value="très satisfait" /> <label class="form-check-label"
+									for="tres-satisfait">Très satisfait</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Recommandation de la Formation: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="recommandation-oui" th:field="*{recommandationFormation}"
+									name="recommandation" value="true" /> <label
+									class="form-check-label" for="oui">Oui</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									id="recommandation-non" th:field="*{recommandationFormation}"
+									name="recommandation" value="false" /> <label
+									class="form-check-label" for="non">Non</label>
+							</div>
+						</div>
+						<div>
+							<label for="name">Autres projets de Formation: </label>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="projets-oui"
+									th:field="*{autresProjetsFormations}" name="projets"
+									value="true" /> <label class="form-check-label" for="oui">Oui</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="projets-non"
+									th:field="*{autresProjetsFormations}" name="projets"
+									value="false" /> <label class="form-check-label" for="non">Non</label>
+							</div>
+						</div>
+						<div>
+							<input class="btn btn-primary m-2" type="submit" id="btnValider" value="valider" />
+							<a th:href="@{http://localhost:4200/page-accueil}"
+							class="btn btn-primary m-2">Retour</a>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+		</div>
+		<footer>
+			<div>
+				<p>Copyright © 2022</p>
+			</div>
+		</footer>
+</body>
+</html>

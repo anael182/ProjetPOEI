@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+       <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link th:href="@{/css/style.css}" href="/css/style.css" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <title>Liste Stagiaires</title>
+</head>
+<body>
+<header>
+    <div class="row">
+        <div class="col-4">
+            <img src="/assets/logo.png" class="w-25 m-3 img-thumbnail" alt="photo profil">
+        </div>
+        <div class="col-8">
+            <h1 class=" mt-5">Ecole de formation</h1>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" routerLink="/page-accueil" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link active" routerLink="/catalogue"  href="#">Formations</a>
+                    <a class="nav-link active" routerLink="/contact" href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<ul>
+    <li th:each="entrepriseClient : ${lstEntreprises}">
+        <span th:text="${entrepriseClient.nom}"/>
+</ul>
+</body>
+</html>

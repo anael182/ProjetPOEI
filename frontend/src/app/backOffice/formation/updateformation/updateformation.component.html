@@ -1,0 +1,42 @@
+<div class="container">
+    <h2 class="text-center my-3">Modifier une formation</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <form #formationFormUpdate="ngForm" (ngSubmit)="updateFormation()" class="row g-3" >
+                
+                <div class="col-md-6">
+                    <label for="nomDomaine">Domaine</label>
+                    <select class="form-control" id="nomDomaine" name="nomDomaine" ngModel [(ngModel)]="formation.nomDomaine" required >
+                  <option >Informatique</option>
+                  <option>Commerce</option>
+                  <option>RH</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="nomFormation" class="form-label">Formation</label>
+                  <input type="text" placeholder="Nom de la formation" class="form-control" id="nomFormation" name="nomFormation"[(ngModel)]="formation.nomFormation" required minlength="5" maxlength="40">
+                </div>
+                <div class="col-6">
+                    <label for="nomThemeFormation" class="form-label">Theme de la formation</label>
+                    <input type="text" placeholder="Theme" class="form-control" id="nomThemeFormation" required minlength="5" maxlength="40" name="nomThemeFormation" [(ngModel)]="formation.nomThemeFormation">
+                </div>
+                <div class="col-6">
+                    <label for="prix" class="form-label">Prix € TTC</label>
+                    <input type="number" placeholder="00.00" class="form-control" id="prix" #prix="ngModel" required min="100" name="prix" [(ngModel)]="formation.prix">
+                    <div class="alert alert-danger mt-2" *ngIf="prix.invalid">Le prix doit étre supérieur à 100€</div>
+                </div>
+                <div class="col-12">
+                    <label for="description" class="form-label">Déscription</label>
+                    <textarea class="form-control" id="description" name="description" required rows="3" [(ngModel)]="formation.description"></textarea>
+                </div>
+                <div class="mb-3 col-12">
+                  <button [disabled]="formationFormUpdate.invalid" type="submit" class="btn btn-primary m-1">Mettre à jour</button>
+                  <a routerLink="/admin/formation/liste" class="btn btn-success m-2 mx-auto">Retour</a>
+                </div>
+              </form>
+             
+               <p *ngIf="messageOK" class="alert alert-success mt-5">{{messageOK}}</p>
+              <p *ngIf="messageErreur" class="alert alert-danger mt-5">{{messageErreur}}</p> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>Inscription Stagiaire</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="row d-flex flex-column ">
+    <a class="btn btn-primary" href="http://localhost:4200/page-accueil" role="button">Accueil</a>
+    <h2 class=" mt-5">Inscription stagiaire</h2>
+    <span class="ligne"></span>
+</div>
+<form th:action="@{/inscription-stagiaire/valid}" th:object="${stagiaireDTO}" method="post">
+    <div class="container">
+        <div class="row w-100 pt-2 pb-2">
+            <div class="col-md-5 mx-auto">
+                <div class="form-group">
+                    <label for="email">Adresse email:</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{mail}" type="email" class="form-control border border-primary"
+                               required="required" placeholder="Entrer votre mail" id="email">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1">@</span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe:</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{mdp}" type="password" class="form-control border border-primary"
+                               placeholder="Entrer votre mot de passe" id="mdp">
+                        <div class="input-group-append "><span class="input-group-text border border-primary  "
+                                                               id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                                      width="16" height="16"
+                                                                                      fill="currentColor"
+                                                                                      class="bi bi-shield-lock"
+                                                                                      viewBox="0 0 16 16">
+  <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+  <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
+</svg></span></div>
+                        <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Confirmer mot de passe:</label>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control border border-primary" required="required"
+                               placeholder="Confirmez votre mot de passe" id="mdp">
+                        <div class="input-group-append">
+                            <div class="input-group-append "><span class="input-group-text border border-primary  "
+                                                                   id="basic-addon2"><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16"
+                                    fill="currentColor"
+                                    class="bi bi-shield-lock"
+                                    viewBox="0 0 16 16">
+  <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+  <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
+</svg></span></div>
+                        </div>
+                        <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{nom}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre nom" id="nom">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{prenom}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre prénom" id="prenom">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Adresse :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{adresse}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre adresse" id="adresse">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-house-door" viewBox="0 0 16 16">
+  <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Code Postal :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{codePostal}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre code postal" id="codePostal">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-house-door" viewBox="0 0 16 16">
+  <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('codePostal')}" th:errors="*{codePostal}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Ville :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{ville}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre ville" id="ville">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-house-door" viewBox="0 0 16 16">
+  <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nom de votre Entreprise :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{nomEntreprise}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre ville" id="nomEntreprise">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+  <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('nomEntreprise')}" th:errors="*{nomEntreprise}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Adresse de votre Entreprise :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{adresseEntreprise}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre ville" id="adresseEntreprise">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+  <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('adresseEntreprise')}" th:errors="*{adresseEntreprise}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Code postal de votre Entreprise :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{codePostalEntreprise}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre ville" id="codePostalEntreprise">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+  <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('codePostalEntreprise')}" th:errors="*{codePostalEntreprise}"/><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Ville de votre Entreprise :</label>
+                    <div class="input-group mb-3">
+                        <input th:field="*{villeEntreprise}" type="text" class="form-control border border-primary"
+                               required="required" placeholder="Entrez votre ville" id="villeEntreprise">
+                        <div class="input-group-append">
+                            <span class="input-group-text border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+  <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+</svg></span>
+                        </div>
+                        <span th:if="${#fields.hasErrors('villeEntreprise')}" th:errors="*{villeEntreprise}"/><br>
+                    </div>
+                </div>
+                <div class="form-group form-check">
+
+                </div>
+                <button type="submit" class="btn btn-success ">S'inscrire</button>
+                <span class="register">Vous avez déjà un compte ? <a
+                        href="/login/stagiaire">Connectez-vous</a></span>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

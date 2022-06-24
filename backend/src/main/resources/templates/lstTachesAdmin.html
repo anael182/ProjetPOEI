@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" th:href="@{/style.css}" />
+<link rel="stylesheet" th:href="@{/style-menu-gestion.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<title>Mes tâches</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-5">
+				<img src="/images/it-training-logo.png"
+					class="w-25 m-3 img-thumbnail" alt="photo profil">
+			</div>
+			<div class="col-7">
+				<h1 class=" mt-5">Ecole de formation</h1>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/admin/formation/liste}">Admin</a>
+					</div>
+				</div>
+				<button class="btn btn-danger me-2" type="button">Deconnexion</button>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="row m-2">
+			<div class="col-4 p-0">
+				<div class="card ">
+					<h2 class="card-header">Gestion</h2>
+					<nav>
+						<ul class="nav flex-column mb-2">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
+									des Formations</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/liste-des-sessions}">Gestion des Sessions</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
+									des Stagiaires</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formateur/liste}">Gestion
+									des Formateurs</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/mes-taches}">Mes tâches</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/note-experience-formateur}">Notes &
+									Expériences Formateur</a></li>
+						</ul>
+
+					</nav>
+
+				</div>
+				<a th:href="@{http://localhost:4200/admin}"
+					class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
+			</div>
+			<div class="col-8">
+
+				<h1>Mes tâches</h1>
+				<div>
+					<a th:href="@{http://localhost:4200/admin}"
+						class="btn btn-primary m-2">Retour</a>
+				</div>
+				<h2 class="text-center my-3">Liste des Sessions à annuler</h2>
+				<div class="table-responsive">
+					<table
+						class="table table-info table-striped table-bordered table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center">ID Session</th>
+								<th class="text-center">Causes</th>
+								<th class="text-center">Liste des Sessions à annuler</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${sessionsAAnnuler.empty}">
+								<td colspan="2">Aucune session à annuler</td>
+							</tr>
+							<tr th:each="sessionFormation: ${sessionsAAnnuler}">
+								<td><span th:text="${sessionFormation.idSession}">ID
+										Session</span></td>
+								<td><span>Moins de 3 participants</span></td>
+								<td><a th:href="@{/admin/liste-des-sessions}">Liste des
+										Sessions</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h2 class="text-center my-3">Liste des Formateurs - Annulation
+						après Date Limite</h2>
+					<table
+						class="table table-info table-striped table-bordered table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center">ID Session</th>
+								<th class="text-center">Nom Formateur</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${formateurAnnulationApresLimite.empty}">
+								<td colspan="2">Aucune annulation formateur après limite</td>
+							</tr>
+							<tr th:each="sessionFormation: ${formateurAnnulationApresLimite}">
+								<td><span th:text="${sessionFormation.idSession}">ID
+										Session</span></td>
+								<td><span
+									th:text="${sessionFormation.nom} + ' ' + ${sessionFormation.prenom}">Nom
+										Formateur</span></td>
+
+							</tr>
+						</tbody>
+					</table>
+
+					<h2 class="text-center my-3">Liste des mauvaises notes
+						d'évaluation de la Session</h2>
+
+					<table
+						class="table table-info table-striped table-bordered table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center">ID Evaluation</th>
+								<th class="text-center">Note Accueil</th>
+								<th class="text-center">Note Environnement</th>
+								<th class="text-center">Note Contenu Formation</th>
+								<th class="text-center">ID Session</th>
+								<th class="text-center">Nom Stagiaire</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${evaluationSessionMauvaiseNote.empty}">
+								<td colspan="2">Aucune évaluation mal notée</td>
+							</tr>
+
+							<tr th:each="evaluation: ${evaluationSessionMauvaiseNote}">
+								<td><span th:text="${evaluation.idEvalSession}">ID
+										Evaluation</span></td>
+								<td><span th:text="${evaluation.noteAccueil}">Note
+										Accueil</span></td>
+								<td><span th:text="${evaluation.noteEnvironnement}">Note
+										Environnement</span></td>
+								<td><span th:text="${evaluation.noteContenuFormation}">Note
+										Contenu Formation</span></td>
+								<td><span th:text="${evaluation.idSession}">ID
+										Session</span></td>
+								<td><span
+									th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom
+										Stagiaire</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<h2 class="text-center my-3">Liste des mauvaises notes
+						d'évaluations du Formateur</h2>
+					<table
+						class="table table-info table-striped table-bordered table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center">ID Evaluation</th>
+								<th class="text-center">Note Pédagogie</th>
+								<th class="text-center">Note Maitrise du Domaine</th>
+								<th class="text-center">Note Disponibilité</th>
+								<th class="text-center">Note Questions Réponses</th>
+								<th class="text-center">Note Techniques d'Animations</th>
+								<th class="text-center">ID Session</th>
+								<th class="text-center">Nom Stagiaire</th>
+								<th class="text-center">Nom Formateur</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${evaluationFormateurMauvaiseNote.empty}">
+								<td colspan="2">Aucune évaluation mal notée</td>
+							</tr>
+
+							<tr th:each="evaluation: ${evaluationFormateurMauvaiseNote}">
+								<td><span th:text="${evaluation.idEvalSession}">ID
+										Evaluation</span></td>
+								<td><span th:text="${evaluation.notePedagogie}">Note
+										Pédagogie</span></td>
+								<td><span th:text="${evaluation.noteMaitriseDomaine}">Note
+										Maitrise du Domaine</span></td>
+								<td><span th:text="${evaluation.noteDisponibilite}">Note
+										Disponibilité</span></td>
+								<td><span th:text="${evaluation.noteReponsesQuestions}">Note
+										Questions Réponses</span></td>
+								<td><span th:text="${evaluation.noteTechniqueAnimation}">Note
+										Techniques d'Animations</span></td>
+								<td><span th:text="${evaluation.idSession}">ID
+										Session</span></td>
+								<td><span
+									th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom
+										Stagiaire</span></td>
+								<td><span
+									th:text="${evaluation.nomFormateur} + ' ' + ${evaluation.prenomFormateur}">Nom
+										Formateur</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div>
+			<p>Copyright © 2022</p>
+		</div>
+	</footer>
+</body>
+</html>

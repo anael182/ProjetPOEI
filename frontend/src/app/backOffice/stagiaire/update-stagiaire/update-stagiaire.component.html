@@ -1,0 +1,51 @@
+<div class="container">
+    <h2 class="text-center my-3">Modifier un Stagiaire</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <form #stagiaireFormUpdate="ngForm" (ngSubmit)="updateStagiaire()" class="row g-3" >
+                
+                <div class="col-md-6">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" placeholder="Nom " class="form-control" id="nom" name="nom"[(ngModel)]="stagiaire.nom" required minlength="3" maxlength="15">
+                </div>
+                <div class="col-6">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" placeholder="Prenom" class="form-control" id="prenom" required minlength="3" maxlength="40" name="prenom" [(ngModel)]="stagiaire.prenom">
+                </div>
+                <div class="col-6">
+                    <label for="mail" class="form-label">Email</label>
+                    <input type="email" placeholder="email" class="form-control" id="mail" #email="ngModel" required minlength="9" maxlength="40" name="mail" [(ngModel)]="stagiaire.mail">
+                    <div class="alert alert-danger mt-2" *ngIf="email.invalid">Email valide obligatoire! </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="statut">Statut</label>
+                    <select class="form-control" id="statut" name="statut" ngModel [(ngModel)]="stagiaire.statut" required >
+                  <option selected >Stagiaire</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                    <label for="adresse" class="form-label">Adresse</label>
+                    <input type="text" placeholder="eadresse" class="form-control" id="adresse" #email="ngModel" required minlength="10" maxlength="50" name="adresse" [(ngModel)]="stagiaire.adresse">
+                </div>
+                <div class="col-6">
+                    <label for="codePostal" class="form-label">Code postal</label>
+                    <input type="text" class="form-control" id="codePostal" name="codePostal" required minlength="4" rows="3" [(ngModel)]="stagiaire.codePostal">
+                </div>
+                <div class="col-6">
+                    <label for="ville" class="form-label">Ville</label>
+                    <input type="text" placeholder="ville" class="form-control" id="ville" required minlength="3" maxlength="50" name="ville" [(ngModel)]="stagiaire.ville">
+                   
+                </div>
+                <div class="mb-3 col-12">
+                  <button [disabled]="stagiaireFormUpdate.invalid" type="submit" class="btn btn-primary m-1">Mettre à jour</button>
+                  <a routerLink="/admin/formateur/liste" class="btn btn-success m-2 mx-auto">Retour</a>
+                </div>
+              </form>
+             
+               <p *ngIf="messageOK" class="alert alert-success mt-5">{{messageOK}}</p>
+              <p *ngIf="messageErreur" class="alert alert-danger mt-5">{{messageErreur}}</p> 
+        </div>
+    </div>
+</div>
+
+

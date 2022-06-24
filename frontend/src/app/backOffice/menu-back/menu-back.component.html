@@ -1,0 +1,14 @@
+<div class="card ">
+    <h2 class="card-header">Gestion</h2>
+    <nav>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/formation/liste">Gestion des Formations</a></li>
+            <li class="nav-item"><a class="nav-link" role="button" (click)="listeSessions()">Gestion des Sessions</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/stagiaire/liste">Gestion des Stagiaires</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/formateur/liste">Gestion des Formateurs</a></li>
+            <li class="nav-item"><a class="nav-link" role="button"  (click)="mesTachesRedirect()">Mes tâches</a></li>
+            <li class="nav-item"><a class="nav-link" role="button" (click)="noteFormateurRedirect()">Notes & Expériences Formateur</a></li>
+            
+        </ul>
+    </nav>
+</div>

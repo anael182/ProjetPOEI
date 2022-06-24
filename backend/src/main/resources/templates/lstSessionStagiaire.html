@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/style.css}" />
+<link rel="stylesheet" th:href="@{/style-menu-gestion.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<title>Mes Sessions</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-4">
+				<img src="/images/it-training-logo.png" class="w-25 m-3 img-thumbnail"
+					alt="photo profil">
+			</div>
+			<div class="col-8">
+				<span class=" mt-5">Ecole de formation</span>
+			</div>
+		</div>
+		
+		<div class="alert alert-primary alert-dismissible fade show" th:if="${success}" role="alert">
+  <strong style="text-align:center">Votre évaluation est enregistrée</strong>
+
+</div>
+
+		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a>
+							<a
+							class="nav-link active">Espace Client</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="row">
+		<div class="col-4 card ">
+			<h2 class="card-header">Gestion</h2>
+			<nav>
+				<ul class="nav flex-column mb-2">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/espace-client/mes-sessions}">Mes sessions</a></li>
+					<li class="nav-item"><a class="nav-link"
+						>Mes informations personnelles</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-8 container">
+			<div class="row mt-3">
+
+				<div class="col-8">
+					<h1>Mes Sessions de formation</h1>
+					<div class="table-responsive">
+						<table
+							class="table table-info table-striped table-bordered table-hover">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">Nom de la formation</th>
+									<th class="text-center">ID Session</th>
+									<th class="text-center">Date de début</th>
+									<th class="text-center">Date de fin</th>
+									<th class="text-center">Type de formation</th>
+									<th class="text-center">Evaluation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:if="${sessions.empty}">
+									<td colspan="2">Aucune session inscrite</td>
+								</tr>
+								<tr th:each="sessionStagiaire : ${sessions}">
+									<td><span th:text="${sessionStagiaire.nomFormation}">Nom
+											formation</span></td>
+									<td><span th:text="${sessionStagiaire.idSession}">ID
+											Session</span></td>
+									<td><span th:text="${sessionStagiaire.dateDebut}">Date
+											de début</span></td>
+									<td><span th:text="${sessionStagiaire.dateFin}">Date
+											de fin</span></td>
+									<td><span th:text="${sessionStagiaire.typeFormation}">Type
+											de formation</span></td>
+									<td><a
+										th:href="@{/evaluation-formation/add/{id}(id=${sessionStagiaire.idSession})}"
+										th:if="${sessionStagiaire.estEvaluable}">Evaluer</a> <span
+										th:unless="${sessionStagiaire.estEvaluable}">Session
+											non terminée</span></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+			<div>
+				<p>Copyright © 2022</p>
+			</div>
+		</footer>
+</body>
+</html>

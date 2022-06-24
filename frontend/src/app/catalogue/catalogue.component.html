@@ -1,0 +1,22 @@
+<h1 class="text-center mt-2">Notre catalogue de formations</h1>
+
+<div class="container">
+    <div class="row">
+        <div  *ngFor="let elem of formations" class="col-4 mt-2">
+            <div class="card bg-light" style="width: 18rem;">
+                <img class=" p-3 card-img-top" src="assets/formation.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title text-uppercase ">{{ elem?.nomDomaine}}</h4>
+                    <p class="card-text "><b>Formation :</b> {{elem?.nomFormation}}</p>
+                    <p class="card-text"><b>informations :</b> {{elem?.description}}</p>
+                    <p class="card-text"><b>Prix :</b> {{elem?.prix}}€ ttc </p>
+                    <a  class="btn btn-primary m-2" routerLink="/formation/{{elem?.idFormation}}">Plus de
+                        détails</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="" class="error">
+        Une erreur est survenue durant le chargement. Veuillez réessayer.
+    </div>
+</div>

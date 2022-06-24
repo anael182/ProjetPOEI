@@ -1,0 +1,29 @@
+<div class="container">
+    <h2 class="title">Details de la formation</h2>
+    <div *ngIf="!error" class="row text-center mt-4">
+        <article class="col-sm-4 ">
+            <img src="assets/formation.png" class="card-img-top img-fluid border border-primary p-2 my-3" alt="Laptop"
+                title="Laptop">
+            <h4 class="card-title ">Domaine : {{ formation?.nomDomaine}}</h4>
+        </article>
+        <article class="col-sm-8 alert alert-primary ">
+            <h3 class="font-weight-bold text-uppercase"> {{formation?.nomFormation}}</h3>
+            <p style="white-space: pre-line;"><b>informations :</b> {{formation?.description}}</p>
+            <p style="white-space: pre-line;"><b>Theme :</b> {{formation?.nomThemeFormation}}</p>
+
+            <p class="card-text"><b>Type de formation :</b>
+                {{formation?.listeSessionFormation[0].typeFormation}}</p>
+            <p class="card-text"><b>Date de début :</b> {{formation?.listeSessionFormation[0].dateDebut |
+                date:'dd-MM-yyy'}}</p>
+            <p class="card-text"><b>Date de fin :</b> {{formation?.listeSessionFormation[0].dateFin |
+                date:'dd-MM-yyy'}}</p>
+            <p style="white-space: pre-line;"><b>Prix :</b> {{formation?.prix}}€ ttc </p>
+            <a class="btn btn-outline-primary m-2" routerLink="/">Retour</a>
+            <a href="" class="btn btn-outline-success" routerLink="/session/inscription/{{formation?.listeSessionFormation[0].idSession}}/{{formation?.idFormation}}">S'inscrire </a>
+        </article>
+    </div>
+
+    <div *ngIf="error" class="error">
+        Une erreur est survenue durant le chargement. Veuillez réessayer.
+    </div>
+</div>

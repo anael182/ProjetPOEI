@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+/*===========formulaire login======*/
+
+
+
+.mot-oubli {
+    text-shadow: none;
+    color: black;
+    font-weight: normal;
+    letter-spacing: none;
+}
+
+.mot-oubli:hover {
+    color: green;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 5px;
+    color: #28a745;
+}
+
+.ligne {
+    display: block;
+    margin: 5px auto;
+    height: 2px;
+    background: #28a745;
+    width: 30%;
+}
